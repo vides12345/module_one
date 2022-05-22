@@ -2,7 +2,6 @@ package com.ro;
 
 import java.io.IOException;
 import java.io.PrintStream;
-
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,29 +11,28 @@ import java.util.Map;
 public class Main {
     static HashMap<Integer, String> map = fillMap(new HashMap<>());
 
-
     public static void main(String[] args) throws IOException {
         String filePath = "textIn";
-//        String filePath = "D:\\proecto\\module_one\\textIn";
         String toCode = Files.readString(Path.of(filePath));
         print(toCode);
         String code = code(toCode, 3);
         print(code);
         String decode = decode(code, -3);
         Files.writeString(Path.of("textOut"), decode);
-//        Files.writeString(Path.of("D:\\proecto\\module_one\\textOut"), decode);
         print(decode);
         System.out.println(toCode.toLowerCase().equals(decode));
+    }
+
+    static void bruteForce(String textIn) {
 
     }
 
     static String code(String textIn, int key) {
-
         char[] chars = textIn.toLowerCase().toCharArray();
         StringBuilder builder = new StringBuilder();
         for (char aChar : chars) {
             if (map.containsValue(String.valueOf(aChar))) {
-                 builder.append(getCeasarLetter(String.valueOf(aChar), key));
+                builder.append(getCeasarLetter(String.valueOf(aChar), key));
             } else builder.append(aChar);
         }
         return new String(builder);
@@ -51,19 +49,19 @@ public class Main {
         return new String(builder);
     }
 
-    private static String getCeasarLetter(String s, int key) {
-        if (map.containsValue(s)) {
+    private static String getCeasarLetter(String letterRus, int key) {
+        if (map.containsValue(letterRus)) {
             for (Map.Entry<Integer, String> entry : map.entrySet()) {
-                if (entry.getValue().equals(s)) {
-                    int index = (map.size()+ entry.getKey() + key) % map.size();
+                if (entry.getValue().equals(letterRus)) {
+                    int index = (map.size() + entry.getKey() + key) % map.size();
                     return map.get(index);
                 }
             }
         }
-        return s;
+        return letterRus;
     }
 
-    private static HashMap<Integer, String> fillMap(HashMap<Integer, String> map)   {
+    private static HashMap<Integer, String> fillMap(HashMap<Integer, String> map) {
         map.put(1, "а");
         map.put(2, "б");
         map.put(3, "в");
@@ -104,11 +102,10 @@ public class Main {
         map.put(38, "!");
         map.put(39, " ");
         map.put(40, "?");
-        System.out.println(map.size());
         return map;
     }
 
-    static void print(String s)   {
+    static void print(String s) {
         PrintStream ps = new PrintStream(System.out, true, StandardCharsets.UTF_8);
         ps.println(s);
     }
