@@ -14,13 +14,15 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        String filePath = "D:\\proecto\\module_one\\textIn";
+        String filePath = "textIn";
+//        String filePath = "D:\\proecto\\module_one\\textIn";
         String toCode = Files.readString(Path.of(filePath));
         print(toCode);
         String code = code(toCode, 3);
         print(code);
         String decode = decode(code, -3);
-        Files.writeString(Path.of("D:\\proecto\\module_one\\textOut"), decode);
+        Files.writeString(Path.of("textOut"), decode);
+//        Files.writeString(Path.of("D:\\proecto\\module_one\\textOut"), decode);
         print(decode);
         System.out.println(toCode.toLowerCase().equals(decode));
 
