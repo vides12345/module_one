@@ -9,6 +9,7 @@ import java.util.Map;
 public class Main {
     static HashMap<Integer,String> map;
 
+
     static {
         try {
             map = fillMap(new HashMap<>());
