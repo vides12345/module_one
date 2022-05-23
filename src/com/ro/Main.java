@@ -5,26 +5,44 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
     static HashMap<Integer, String> map = fillMap(new HashMap<>());
-
+    static String toCode;
+    static String deCode;
     public static void main(String[] args) throws IOException {
         String filePath = "textIn";
-        String toCode = Files.readString(Path.of(filePath));
-        print(toCode);
-        String code = code(toCode, 3);
-        print(code);
-        String decode = decode(code, -3);
-        Files.writeString(Path.of("textOut"), decode);
-        print(decode);
-        System.out.println(toCode.toLowerCase().equals(decode));
+        toCode = Files.readString(Path.of(filePath));
+//        print(toCode);
+        String coded = code(toCode, 3);
+//        print(code);
+         deCode= decode(coded, -3);
+        Files.writeString(Path.of("textOut"), deCode);
+//        print(decode);
+        System.out.println(toCode.toLowerCase().equals(deCode));
+
+        System.out.println("***************************");
+        bruteForce(coded);
     }
 
-    static void bruteForce(String textIn) {
+    static void bruteForce(String textCoded) {
+        char[] array = toCode.toLowerCase().toCharArray();
+        print(Arrays.toString(array));
 
+        char[] chars = textCoded.toCharArray();
+        print(Arrays.toString(chars));
+
+        boolean isDecoded = false;
+        while (!isDecoded) {
+            for (int i = 1; i <= map.size(); i++) {
+                for (int j = 0; j < array.length; j++) {
+                    
+                }
+            }
+        }
     }
 
     static String code(String textIn, int key) {
