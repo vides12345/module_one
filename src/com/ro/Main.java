@@ -16,16 +16,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String filePath = "textIn";
         toCode = Files.readString(Path.of(filePath));
-//        print(toCode);
+        print(toCode);
         String coded = code(toCode, 3);
-//        print(code);
+        print(coded);
          deCode= decode(coded, -3);
         Files.writeString(Path.of("textOut"), deCode);
-//        print(decode);
+        print(deCode);
         System.out.println(toCode.toLowerCase().equals(deCode));
 
         System.out.println("***************************");
-        bruteForce(coded);
+//        bruteForce(coded);
     }
 
     static void bruteForce(String textCoded) {
@@ -44,7 +44,7 @@ public class Main {
             }
         }
     }
-
+//coding a text using Ceasar codes
     static String code(String textIn, int key) {
         char[] chars = textIn.toLowerCase().toCharArray();
         StringBuilder builder = new StringBuilder();
@@ -55,7 +55,7 @@ public class Main {
         }
         return new String(builder);
     }
-
+//decoding a text
     static String decode(String textOut, int key) {
         char[] chars = textOut.toLowerCase().toCharArray();
         StringBuilder builder = new StringBuilder();
@@ -66,7 +66,7 @@ public class Main {
         }
         return new String(builder);
     }
-
+//Getting Ceasar codes of letter with key displacement
     private static String getCeasarLetter(String letterRus, int key) {
         if (map.containsValue(letterRus)) {
             for (Map.Entry<Integer, String> entry : map.entrySet()) {
@@ -78,6 +78,7 @@ public class Main {
         }
         return letterRus;
     }
+//filling Russian letters to map
 
     private static HashMap<Integer, String> fillMap(HashMap<Integer, String> map) {
         map.put(1, "а");
@@ -122,7 +123,7 @@ public class Main {
         map.put(40, "?");
         return map;
     }
-
+//print Russian letters on UTF
     static void print(String s) {
         PrintStream ps = new PrintStream(System.out, true, StandardCharsets.UTF_8);
         ps.println(s);
