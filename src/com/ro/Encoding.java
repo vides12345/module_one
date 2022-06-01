@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public interface Encoding {
-    void CodeString(Path pathIn, int key) throws IOException;
+    Path codeString(Path pathIn, int key) throws IOException;
 
-    void DecodeString(Path pathOut, int key) throws IOException;
+    String decodeString(Path pathOut, int key) throws IOException;
 
     void bruteForce(Path path);
 

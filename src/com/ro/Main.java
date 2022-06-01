@@ -7,10 +7,8 @@ import java.util.HashMap;
 public class Main {
         public static void main(String[] args) throws IOException {
             CodeDecode codeDecode = new CodeDecode();
-            UtilsRus.print(codeDecode.getCeasarLetter(",", 3));
             Path filePath = Path.of("textIn");
-            codeDecode.CodeString(filePath, 3);
-
-            codeDecode.DecodeString(Path.of("dsdsd"),3);
+            Path codeString = codeDecode.codeString(filePath, 3);
+            codeDecode.decodeString(codeString, -3);
         }
 }

@@ -8,11 +8,13 @@ import java.util.Map;
 
 public class CodeDecode implements Encoding {
     Map<Integer, String> map = UtilsRus.fillMap();
+//    Path decodeFile = Path.of("textOut");
+
     @Override
-    public void CodeString(Path path, int key) throws IOException {
+    public Path codeString(Path path, int key) throws IOException {
         StringBuilder builder = new StringBuilder();
         List<String> list = Files.readAllLines(path);
-        Path textOut1 = Files.createFile(Path.of("textOut1"));
+        Path textOut = Files.createFile(Path.of("textOut"));
         for (String textRaw : list) {
             for (int i = 0; i < textRaw.length(); i++) {
                 char aChar = textRaw.charAt(i);
@@ -20,12 +22,13 @@ public class CodeDecode implements Encoding {
                     builder.append(getCeasarLetter(String.valueOf(aChar), key));
                 } else builder.append(aChar);
             }
-            Files.writeString(textOut1, new StringBuffer(builder));
+            Files.writeString(textOut, new StringBuffer(builder));
         }
+        return textOut;
     }
 
     @Override
-    public void DecodeString(Path path, int key) throws IOException {
+    public String decodeString(Path path, int key) throws IOException {
         String string = Files.readString(path);
         StringBuilder builder = new StringBuilder();
         Path decodedFiles = Path.of("textDecoded");
@@ -35,7 +38,9 @@ public class CodeDecode implements Encoding {
                 builder.append(getCeasarLetter(String.valueOf(aChar), key));
             } else builder.append(aChar);
         }
-        Files.writeString(decodedFiles, new String(builder));
+        Path initialText = Files.writeString(decodedFiles, new String(builder));
+        String initialString = Files.readString(initialText);
+        return initialString;
     }
 
     @Override
